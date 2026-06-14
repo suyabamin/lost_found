@@ -9,7 +9,10 @@ const API_BASE_URL = (hostname === 'localhost' || hostname === '127.0.0.1')
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
   withCredentials: true,
-  timeout: 10000
+  timeout: 10000,
+  headers: {
+    'Bypass-Tunnel-Reminder': 'true'
+  }
 })
 
 // Request interceptor
