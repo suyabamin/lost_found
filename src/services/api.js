@@ -3,7 +3,7 @@ import axios from 'axios'
 const hostname = window.location.hostname
 const API_BASE_URL = (hostname === 'localhost' || hostname === '127.0.0.1') 
   ? `http://${hostname}:8000/api` 
-  : (import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api')
+  : '/api'
 
 
 const apiClient = axios.create({
