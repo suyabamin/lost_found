@@ -39,7 +39,17 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
         'http://127.0.0.1:5175',
         'http://localhost:5175'
     ];
-    if (in_array($origin, $allowed_origins)) {
+    
+    // Check for custom origin in .env
+    $custom_origin = getenv('ALLOWED_VITE_ORIGIN') ?: $_ENV['ALLOWED_VITE_ORIGIN'] ?? null;
+    if ($custom_origin) {
+        $allowed_origins[] = rtrim($custom_origin, '/');
+    }
+
+    // Allow local dev, custom origin, or any Vercel deployment
+    $is_vercel = (strpos($origin, '.vercel.app') !== false);
+    
+    if (in_array($origin, $allowed_origins) || $is_vercel) {
         header("Access-Control-Allow-Origin: $origin");
     }
 }
