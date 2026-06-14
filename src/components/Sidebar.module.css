@@ -1,0 +1,189 @@
+/* ==============================================================
+   SIDEBAR — Premium Navigation Panel
+   ============================================================== */
+
+:root {
+  --sidebar-width: 280px;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  background: var(--bg-card);
+  padding: 28px 16px;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: var(--z-sidebar);
+  transition: var(--transition);
+  overflow-y: auto;
+  /* Subtle shadow on right edge */
+  box-shadow: 2px 0 20px rgba(15, 23, 42, 0.04);
+}
+
+/* ── Logo ────────────────────────────────────────────── */
+.logoArea {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  padding: 0 12px;
+}
+
+.logoIcon {
+  font-size: 26px;
+}
+
+.logoText {
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: var(--text-heading);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.logoText span {
+  color: var(--primary);
+}
+
+/* ── Nav Links ───────────────────────────────────────── */
+.navLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.navItem a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--text-body);
+  text-decoration: none;
+  padding: 13px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: var(--transition);
+  position: relative;
+}
+
+.navItem a svg {
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.navItem a:hover {
+  background: var(--bg-card-alt);
+  color: var(--primary);
+  transform: translateX(4px);
+}
+
+.navItem a.active {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 14px rgba(0, 169, 181, 0.22);
+}
+
+.navItem a.active:hover {
+  transform: none;
+}
+
+/* ── Sidebar Footer ──────────────────────────────────── */
+.sidebarFooter {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.userProfileMini {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: var(--transition);
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border-color);
+}
+
+.userProfileMini:hover {
+  border-color: var(--primary);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+}
+
+.miniAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-color);
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.userProfileMini:hover .miniAvatar {
+  border-color: var(--primary);
+}
+
+.miniInfo {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.miniName {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.miniRole {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.helpBtn {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 11px 14px;
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+  border: 1px solid transparent;
+}
+
+.helpBtn:hover {
+  color: var(--primary);
+  background: var(--primary-light);
+  border-color: rgba(0,169,181,0.2);
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .sidebar {
+    display: none;
+  }
+}

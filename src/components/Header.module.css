@@ -1,0 +1,253 @@
+/* ==============================================================
+   HEADER — Premium Navigation
+   ============================================================== */
+
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: var(--z-header);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-color);
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.navContainer {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 clamp(16px, 4vw, 48px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ── Logo ────────────────────────────────────────────── */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--text-heading);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.logoIcon {
+  color: var(--primary);
+  font-size: 24px;
+}
+
+.logo span {
+  background: linear-gradient(135deg, var(--text-heading), var(--primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Nav Links (Desktop) ─────────────────────────────── */
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 1100px) {
+  .navLinks { display: none; }
+}
+
+.navLinks a {
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  color: var(--text-body);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: var(--transition);
+}
+
+.navLinks a svg { font-size: 1rem; color: var(--text-muted); transition: var(--transition); }
+
+.navLinks a:hover {
+  background: var(--bg-card-alt);
+  color: var(--primary);
+}
+
+.navLinks a:hover svg { color: var(--primary); }
+
+.activeLink {
+  background: var(--primary-light) !important;
+  color: var(--primary) !important;
+}
+
+.activeLink svg { color: var(--primary) !important; }
+
+/* ── Actions Row ─────────────────────────────────────── */
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 24px);
+}
+
+.userProfile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  padding: 6px 14px 6px 6px;
+  background: var(--bg-card-alt);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+  max-width: 180px;
+}
+
+.userProfile:hover {
+  background: var(--bg-card);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+  box-shadow: var(--shadow-xs);
+}
+
+.userName {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text-heading);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Auth Buttons */
+.loginBtn {
+  color: var(--text-heading);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 10px 20px;
+  transition: var(--transition);
+}
+
+.loginBtn:hover { color: var(--primary); }
+
+.signupBtn {
+  background: var(--primary);
+  color: white;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 11px 24px;
+  border-radius: var(--radius-lg);
+  transition: var(--transition);
+  box-shadow: 0 4px 14px var(--primary-glow);
+}
+
+.signupBtn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--primary-glow);
+}
+
+/* Utility Icons */
+.themeToggle, .menuToggle {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-heading);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.themeToggle:hover, .menuToggle:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.menuToggle { display: none; }
+
+@media (max-width: 1100px) {
+  .menuToggle { display: flex; }
+  .loginBtn, .signupBtn, .userProfile, .logoutBtn { display: none; }
+}
+
+/* ── Mobile Menu ─────────────────────────────────────── */
+.mobileMenu {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 12px;
+  box-shadow: var(--shadow-lg);
+  animation: slideDown 0.3s ease;
+}
+
+.mobileMenu a, .themeToggleMobile {
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--text-heading);
+  font-weight: 800;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: var(--transition);
+  background: var(--bg-card-alt);
+  border: none;
+  text-align: left;
+}
+
+.mobileMenu a:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+  transform: translateX(6px);
+}
+
+.logoutBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-color);
+  background: transparent;
+  color: var(--color-danger);
+  font-weight: 800;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.logoutBtn:hover {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: var(--color-danger);
+}

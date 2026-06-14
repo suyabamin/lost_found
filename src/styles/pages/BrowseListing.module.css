@@ -1,0 +1,401 @@
+/* ==============================================================
+   BROWSE LISTING — Marketplace Discovery Page
+   ============================================================== */
+
+.browsePage {
+  display: flex;
+  background: var(--bg-main);
+  min-height: 100vh;
+}
+
+.mainContent {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+  overflow-x: hidden;
+  max-width: calc(100% - var(--sidebar-width));
+}
+
+/* ── Page Header ─────────────────────────────────────── */
+.pageHeader {
+  background: var(--bg-card);
+  padding: clamp(24px, 4vw, 48px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.headerContent {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 4vw, 40px);
+  flex-wrap: wrap;
+}
+
+.headerIconLarge {
+  width: 80px;
+  height: 80px;
+  background: var(--primary-light);
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  color: var(--primary);
+  flex-shrink: 0;
+  border: 1.5px solid rgba(0,169,181,0.2);
+  transition: var(--transition);
+}
+
+.pageTitle {
+  flex: 1;
+  min-width: 0;
+}
+
+.pageTitle h1 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 900;
+  color: var(--text-heading);
+  margin: 0 0 6px 0;
+  letter-spacing: -0.02em;
+}
+
+.pageTitle p {
+  color: var(--text-body);
+  font-size: 1rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.headerStats {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.headerStat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.headerStat svg { color: var(--primary); }
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--border-color);
+}
+
+.pageActions {
+  margin-left: auto;
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* ── Content Area ────────────────────────────────────── */
+.contentArea {
+  padding: clamp(20px, 4vw, 48px);
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+/* ── Filter Bar ──────────────────────────────────────── */
+.filterBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 36px;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: var(--bg-card);
+  padding: 16px 20px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-xs);
+}
+
+.filterChips {
+  display: flex;
+  gap: 8px;
+  background: var(--bg-card-alt);
+  padding: 5px;
+  border-radius: var(--radius-lg);
+  flex-wrap: wrap;
+}
+
+.chip {
+  padding: 9px 20px;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-family: inherit;
+  color: var(--text-body);
+  transition: var(--transition);
+}
+
+.chip:hover {
+  background: rgba(0,169,181,0.08);
+  color: var(--primary);
+}
+
+.chip.active {
+  background: var(--primary);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.searchContainer {
+  position: relative;
+  flex: 1;
+  max-width: 420px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+  font-size: 0.9rem;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 13px 16px 13px 44px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-main);
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: var(--transition);
+  color: var(--text-heading);
+  outline: none;
+}
+
+.searchInput:focus {
+  border-color: var(--primary);
+  background: var(--bg-card);
+  box-shadow: 0 0 0 4px var(--primary-glow);
+}
+
+.clearBtn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.clearBtn:hover { color: var(--color-danger); }
+
+/* ── Listings Grid ───────────────────────────────────── */
+.listingsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* Listing Card */
+.listingCard {
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  border: 1.5px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  cursor: pointer;
+  animation: fadeInUp 0.4s ease both;
+}
+
+.listingCard:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+.imageArea {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: var(--bg-card-alt);
+}
+
+.listingImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.listingCard:hover .listingImage {
+  transform: scale(1.07);
+}
+
+.listingBadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: white;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+
+.listingBadge.lost  { background: var(--color-lost); }
+.listingBadge.found { background: var(--primary); }
+
+.listingBody {
+  padding: 18px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.listingTitle {
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--text-heading);
+  margin: 0 0 12px 0;
+  line-height: 1.35;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.listingDesc {
+  font-size: 0.875rem;
+  color: var(--text-body);
+  margin: 0 0 16px 0;
+  flex: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.listingMeta {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  gap: 8px;
+}
+
+.listingMeta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.listingMeta svg { color: var(--primary); flex-shrink: 0; }
+
+/* ── Empty State ─────────────────────────────────────── */
+.emptyState {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px;
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  border: 2px dashed var(--border-color);
+  gap: 12px;
+}
+
+.emptyState h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-heading);
+  margin: 8px 0 0 0;
+}
+
+.emptyState p {
+  color: var(--text-muted);
+  max-width: 360px;
+  margin: 0 0 8px 0;
+}
+
+/* ── Load More ───────────────────────────────────────── */
+.loadMoreBtn {
+  display: block;
+  margin: 40px auto 0;
+  padding: 14px 40px;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-card);
+  font-weight: 800;
+  font-size: 0.9rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--transition);
+  color: var(--text-heading);
+}
+
+.loadMoreBtn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .mainContent    { margin-left: 0; max-width: 100%; }
+}
+
+@media (max-width: 900px) {
+  .headerContent  { flex-wrap: wrap; }
+  .pageActions    { margin-left: 0; width: 100%; }
+  .filterBar      { flex-direction: column; align-items: stretch; }
+  .searchContainer { max-width: none; }
+}
+
+@media (max-width: 640px) {
+  .listingsGrid   { grid-template-columns: 1fr; }
+  .headerIconLarge { width: 60px; height: 60px; font-size: 24px; }
+}
