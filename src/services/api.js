@@ -3,7 +3,7 @@ import axios from 'axios'
 const hostname = window.location.hostname
 const API_BASE_URL = (hostname === 'localhost' || hostname === '127.0.0.1') 
   ? `http://${hostname}:8000/api` 
-  : '/api'
+  : 'https://lost-found-bt1.loca.lt/api'
 
 
 const apiClient = axios.create({
