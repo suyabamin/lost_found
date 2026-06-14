@@ -1,0 +1,6 @@
+.git
+.env
+debug.log
+vendor/
+docker-compose.yml
+Dockerfile
